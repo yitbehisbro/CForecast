@@ -5,11 +5,11 @@ import sys
 import telebot
 import random
 from model.forecast7days import refine_data
+from model.historical import return_historical_data
 
+bot = telebot.TeleBot("6008131177:AAF05_P4Ft1Olli0AC1CWLW2pKcQEXFexz4")
 
-bot = telebot.TeleBot("6008131177:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-
-api_key = "fcxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+api_key = "fc083a590244ec5531e6753618ba21fd"
 nlp = spacy.load("en_core_web_md")
 min = max = feels = temp = None
 
@@ -85,24 +85,20 @@ def send_welcome(message):
                                                       "We are in hurry preparing a manual. Thank you for your patience."))
     elif message.text == "/historical":
         bot.reply_to(message, "Hello @{}!\n{}".format(message.from_user.username,
-            "We are in hurry developing the integration. Thank you for your patience."))
+            "To get the historical weather data correctly, please use these like format of date. Example: '12nd April 2011 to 15th May 2011'.\nThank you!"))
     else:
-        bot.reply_to(message, "Howdy, how are you doing?")
+        bot.reply_to(message, "Hello @{}!\nI am a CForecast bot assistant. How may I help you?".format(message.from_user.username))
         # bot.reply_to(message, message)
 
 
 @bot.message_handler(func=lambda message: True)
 def answer(message):
     """Response to the telegram bot requests"""
-
+    # city = start_date = end_date = ""
+    nlp = spacy.load("en_core_web_sm")
+    metadata = {"city": [], "date": []}
     gratitude = [nlp("Thank you"), nlp("Thanks"), nlp("hats off"), nlp("hats off to you")]
     statement = nlp(message.text)
-    for ent in statement.ents:
-        if ent.label_ == "GPE":  # GeoPolitical Entity
-        # print(ent.text)
-            response = get_weather(ent.text)  # Gets the weather directly by the city name
-            bot.reply_to(message, "Hello @{}!\nIn {}, {}\n\nIn upcomming 7 days:{}".format(message.from_user.username, ent.text, response, refine_data(ent.text)))
-            exit()
     min_similarity = 0.75
     rand = random.randint(0, 5)
     respo = ["My pleasure!", "You are welcome!", "Never mind!", "It's okay", "Thank you too!", "Oh, no!"]
@@ -110,7 +106,30 @@ def answer(message):
         if gratitude[i].similarity(statement) >= min_similarity:
             bot.reply_to(message, respo[rand])
             exit()
+    for ent in statement.ents:
+        if ent.label_ == "GPE":  # GeoPolitical Entity
+            metadata['city'].append(ent.text)
+        if ent.label_ == "DATE":
+            metadata['date'].append(ent.text)
 
+    if len(metadata['city']) >= 1 and len(metadata['date']) >= 1:
+        print(metadata['date'][0])
+        if metadata['date'][0] != "7 days":
+            results = return_historical_data(message.text)
+            bot.reply_to(message, "Hello @{}!\n\n⛄ Here is the historical weather data of {} from {} ⛄\n\n{}\nI hope this will help you!".format(message.from_user.username, metadata['city'][0], metadata['date'][0], results))
+            exit()
+        if metadata['date'][0] == "7 days":
+            response = get_weather(metadata['city'][0])
+            bot.reply_to(message, "Hello @{}!\nIn {}, {}\n\nIn upcomming 7 days:{}".format(message.from_user.username, metadata['city'][0], response, refine_data(metadata['city'][0])))
+            exit()
+    if len(metadata['city']) >= 1 and len(metadata['date']) == 0:
+        response = get_weather(metadata['city'][0])  # Gets the weather directly by the city name
+        bot.reply_to(message, "Hello @{}!\nIn {}, {}\n\nIn upcomming 7 days:{}".format(message.from_user.username, metadata['city'][0], response, refine_data(metadata['city'][0])))
+        exit()
+    if len(metadata['city']) >= 1 and len(metadata['date']) >= 1 and metadata['date'][0] == "7 days":
+        response = get_weather(metadata['city'][0])
+        bot.reply_to(message, "Hello @{}!\nIn {}, {}\n\nIn upcomming 7 days:{}".format(message.from_user.username, metadata['city'][0], response, refine_data(metadata['city'][0])))
+    print(metadata['date'][0])
     response = chatbot(message.text)
     bot.reply_to(message, "Hello @{}!\n{}".format(message.from_user.username, response))
 
