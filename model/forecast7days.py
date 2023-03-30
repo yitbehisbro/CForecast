@@ -20,6 +20,23 @@ def weather_data(city=None):
     result = req.json()
     return result
 
+
+def weather_code(code=None):
+    """ Converts weather code to phrases """
+    codes_data = {'0': 'Clear sky', '1': 'Mainly clear', '2': 'Partly cloudy', '3': 'Overcast clouds',
+                  '45': 'Fog', '48': 'Depositing rime fog', '51': 'Drizzle light rain',
+                  '53': 'Drizzle moderate rain', '55': 'Dense intensity', '56': 'Light Freezing Drizzle',
+                  '57': 'Dense intensity Freezing Drizzle', '61': 'Slight rain', '63': 'Moderate rain',
+                  '65': 'Heavy intensity rain', '66': 'Light Freezing Rain', '67': 'Heavy intensity Freezing Rain',
+                  '71': 'Slight snow fall', '73': 'Moderate snow fall', '75': 'Heavy intensity snow fall',
+                  '77': 'Snow grains', '80': 'Slight Rain showers', '81': 'Moderate rain showers', '82': 'Violent rain showers',
+                  '85': 'Slight Snow showers', '86': 'Heavy Snow showers', '95': 'Thunderstorm: Slight or moderate',
+                  '96': 'Thunderstorm with slight hail', '99': 'Thunderstorm with heavy hail'}
+    if code is None:
+        return None
+    return codes_data[str(code)]
+
+
 def refine_data(city=None):
     """ Refines the data in meaningful way """
     weather = weather_data(city)
@@ -29,7 +46,7 @@ def refine_data(city=None):
     temp_min = weather['daily']['temperature_2m_min']
     temp_max = weather['daily']['temperature_2m_max']
 
-    weath_code = {'0': 'Clear sky', '1': 'Mainly clear', '2': 'Partly cloudy', '3': 'Overcast clouds',
+    """ weath_code = {'0': 'Clear sky', '1': 'Mainly clear', '2': 'Partly cloudy', '3': 'Overcast clouds',
                   '45': 'Fog', '48': 'Depositing rime fog', '51': 'Drizzle light rain',
                   '53': 'Drizzle moderate rain', '55': 'Dense intensity', '56': 'Light Freezing Drizzle',
                   '57': 'Dense intensity Freezing Drizzle', '61': 'Slight rain', '63': 'Moderate rain',
@@ -37,7 +54,8 @@ def refine_data(city=None):
                   '71': 'Slight snow fall', '73': 'Moderate snow fall', '75': 'Heavy intensity snow fall',
                   '77': 'Snow grains', '80': 'Slight Rain showers', '81': 'Moderate rain showers', '82': 'Violent rain showers',
                   '85': 'Slight Snow showers', '86': 'Heavy Snow showers', '95': 'Thunderstorm: Slight or moderate',
-                  '96': 'Thunderstorm with slight hail', '99': 'Thunderstorm with heavy hail'}
+                  '96': 'Thunderstorm with slight hail', '99': 'Thunderstorm with heavy hail'}"""
+
     for i in range(len(dates)):
-        output += "\n\n⌚ On {},\n\t🌡 Max temp: {} ℃,\n\t🌡 Min temp: {} ℃\n\t⛅ It will be: {}.\n".format(pd.Timestamp(dates[i]).day_name(), temp_max[i], temp_min[i], weath_code[str(summary[i])])
+        output += "\n\n⌚ On {},\n\t🌡 Max temp: {} ℃,\n\t🌡 Min temp: {} ℃\n\t⛅ It will be: {}.\n".format(pd.Timestamp(dates[i]).day_name(), temp_max[i], temp_min[i], weather_code(summary[i]))
     return output
