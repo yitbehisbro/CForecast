@@ -81,7 +81,6 @@ incremental==21.3.0
 iniconfig==1.1.1
 invoke==1.7.3
 ipykernel==6.7.0
-ipython==7.31.1
 ipython_genutils==0.2.0
 itsdangerous==2.1.2
 jdcal==1.0
