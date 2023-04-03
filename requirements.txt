@@ -161,7 +161,6 @@ pyopencl==2021.2.13
 PyOpenGL==3.1.5
 pyOpenSSL==21.0.0
 pyparsing==2.4.7
-PyPDF2==1.26.0
 pyperclip==1.8.2
 PyQt5==5.15.6
 PyQt5-sip==12.9.1
