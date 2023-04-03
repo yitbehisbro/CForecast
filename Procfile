@@ -1,1 +1,1 @@
-bot: python3 cforecast_bot.py
+bot: python3 weather_bot.py
