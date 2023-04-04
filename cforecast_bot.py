@@ -6,11 +6,10 @@ import random
 from model.forecast_n_days import refine_data
 from model.historical import return_historical_data
 
-bot = telebot.TeleBot("6008131177:AAF05_P4Ft1Olli0AC1CWLW2pKcQEXFexz4")
-api_key = "fc083a590244ec5531e6753618ba21fd"
+api_key = os.environ['API_TOKEN']
+bot = telebot.TeleBot(os.environ['TOKEN'])
 nlp = spacy.load("en_core_web_md")
 min = max = feels = temp = None
-
 
 def get_weather(city_name):
     """Returns the weather data of a city unless otherwise error messages"""
