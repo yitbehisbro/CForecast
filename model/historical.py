@@ -70,10 +70,3 @@ def return_historical_data(statement):
         return get_historical_data(metadata["city"], metadata["start_date"], metadata["end_date"])
     except Exception:
         return 400
-
-
-"""if __name__ == "__main__":
-    print(historical("Hawassa", "2023-02-14", "2023-02-15"))
-    print(return_historical_data("Historical data from 24th June 2022 to 24th March 2023 in Hawassa!"))
-    print("Start date is: {}.".format(metadata['start_date']))
-    print(return_historical_data("Data from 13/04/2012 to 14/04/2013 in Hawassa!"))"""
