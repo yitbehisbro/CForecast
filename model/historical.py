@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+""" A module used to access a historical weather data archive of a particular city"""
 from .forecast_n_days import coordinate, weather_code
 import requests
 import spacy
