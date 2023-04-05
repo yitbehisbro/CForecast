@@ -2,10 +2,16 @@
 The project's name is <code>CForcast</code> where C stands for Current. Its full name reads "Current and Forecast Weather of The Cities in The Globe". <code>CForecast</code> helps researchers, agricultural experts, merchants, farmers, travelers, and others to know the historical, current, or upcoming n days weather of a given city by using a natural language: English.
 
 ## Introduction
-CForecast is a Chatbot-based current, upcoming, and historical weather forecasting application. It uses the Telegram bot as a chatting interface and the pyTelegramBotAPI library of Python as a back-end of the application. The weather data is accessed from OpenWeather and Open-metro through API and without API (Open-metro is free for non-commercial purposes without API).
+CForecast is a Chatbot-based current, upcoming, and historical weather forecasting application. It uses the Telegram bot as a chatting interface and the pyTelegramBotAPI library of Python as a back-end of the application. The weather data is accessed from OpenWeather and Open-metro through API and without API (Open-metro is free for non-commercial purposes without API). 
 
 - A link to CForecast <a href="https://t.me/CForecastBot" target="_blank" >Telegram bot</a>  
 - My LinkedIn Profile <a href="https://www.linkedin.com/in/yitbewendimu" target="_blank" >Yitbarek Wendimu</a>
+#### Technology and Architecture
+The technology I used for this portfolio project are:
+- Machine learning: I used this to train the model and let it to understand the natural language and respond the weather data. For this purpose I used spaCy library and its package for English language.
+- Web API: I used API to integrate with Telegram bot and to access historical, current or upcoming weather data. For this purpose I used Telegram bot API and OpenWeatherMap API as well as Open-Metro API.
+- Programming language I used for this implementation was a Python.
+
 
 ## Installation
 - Clone the repo: <code>git clone https://github.com/yitbehisbro/CForecast.git</code>
