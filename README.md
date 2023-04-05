@@ -62,3 +62,7 @@ CForecast is a Chatbot-based current, upcoming, and historical weather forecasti
 - Also found another one from GitHub named <a href="https://github.com/mustafababil/Telegram-Weather-Bot" target="_blank">Telegram Weather Bot</a>, which has also nearly the same feature as of the first one.
 
 Both of them has no idea about machine learning and natural language processing which means they are not chatbot based and not use natural language to get the current, upcoming and historical weather data.
+
+## Licensing
+
+You are free to use, contribute to or change <code>CForecast</code>. However, I ask you to give a little credit and apprication for my effort. For more detail read [LICENSE](https://github.com/yitbehisbro/CForecast/blob/main/LICENSE).
