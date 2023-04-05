@@ -72,6 +72,32 @@ def chatbot(statement):
         print("Too many requests!")
 
 
+def gratitude_handler(message):
+    """Respond to a gratitude from users"""
+    gratitude = [nlp("Thank you"), nlp("Thanks"), nlp("hats off"), nlp("hats off to you")]
+    statement = nlp(message)
+    min_similarity = 0.75
+    rand = random.randint(0, 5)
+    respo = ["My pleasure!", "You are welcome!", "Never mind!", "It's okay", "Thank you too!", "Oh, no!"]
+    for i in range(len(gratitude)):
+        if gratitude[i].similarity(statement) >= min_similarity:
+            bot.reply_to(message, respo[rand])
+            exit()
+
+
+def named_enity_finder(message):
+    """Check for date and GeoPolitical Entity which is city in my case"""
+    nlp1 = spacy.load("en_core_web_sm")
+    metadata = {"city": [], "date": []}
+    statement = nlp1(message)
+    for ent in statement.ents:
+        if ent.label_ == "GPE":  # GeoPolitical Entity
+            metadata['city'].append(ent.text)
+        if ent.label_ == "DATE":
+            metadata['date'].append(ent.text)
+    return metadata
+
+
 @bot.message_handler(commands=['start', 'historical', 'help'])
 def send_welcome(message):
     """Sends reply to the command from the telegram bot"""
@@ -100,48 +126,13 @@ def answer(message):
         min_similarity: minimum similarity of the user inputted statement and model learning data
         rand: randomize numbers in 0 to 5 which used to respond for gratitude in different text in each reply
     """
-    nlp1 = spacy.load("en_core_web_sm")
-    metadata = {"city": [], "date": []}
     forecast_day = None
     daysdata = ["0 day", "1 day", "2 days", "3 days", "4 days", "5 days", "6 days", "7 days", "8 days",
                 "9 days", "10 days", "11 days", "12 days", "13 days", "14 days", "15 days", "16 days"]
     daycmp = [nlp("16 days"), nlp("16 day"), nlp("160 day"), nlp("160 days"), nlp("1600 days"), nlp("16000 days")]
 
-    """Respond to a gratitude from users"""
-    gratitude = [nlp("Thank you"), nlp("Thanks"), nlp("hats off"), nlp("hats off to you")]
-    statement = nlp(message.text)
-    min_similarity = 0.75
-    rand = random.randint(0, 5)
-    respo = ["My pleasure!", "You are welcome!", "Never mind!", "It's okay", "Thank you too!", "Oh, no!"]
-    for i in range(len(gratitude)):
-        if gratitude[i].similarity(statement) >= min_similarity:
-            bot.reply_to(message, respo[rand])
-            exit()
-    """End of responding to a gratitude from users"""
-
-    """Check for date and GeoPolitical Entity which is city in my case"""
-    statement = nlp1(message.text)
-    for ent in statement.ents:
-        if ent.label_ == "GPE":  # GeoPolitical Entity
-            metadata['city'].append(ent.text)
-        if ent.label_ == "DATE":
-            metadata['date'].append(ent.text)
-    """End of looking for date and GPE from statements"""
-
-    """Refines the date and got the day numeric value and setts it
-    to forecast user defined number of days"""
-    if len(metadata['date']) >= 1 and metadata['date'][0] in daysdata:
-        numeric_day = str(metadata['date'][0]).split(" ")
-        forecast_day = int(numeric_day[0])
-        if forecast_day > 16:
-            bot.reply_to(message, "Hello @{}!\nUnfortunately, I can not do a forecast for more than 16 days.\nSorry "
-                                  "for that.".format(message.from_user.username))
-            exit()
-        if forecast_day <= 0:
-            bot.reply_to(message, "Hello @{}!\nYou used an invalid day numbers so that I can not do a forecast for "
-                                  "it. Sorry for that.".format(message.from_user.username))
-            exit()
-    """End of refining the numeric value of days"""
+    gratitude_handler(message.text)    # Handles the gratitude
+    metadata = named_enity_finder(message.text)    # Named enity finder DATE and 
 
     """Responds for a historical or user defined number of days forecasting
     weather data requests"""
