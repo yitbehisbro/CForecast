@@ -16,10 +16,13 @@ The technology I used for this portfolio project are:
 
 ![code snippet2](https://user-images.githubusercontent.com/72982296/230152666-4e538cf6-f752-4925-a1b3-0edabf337fe4.png)
 
+Or [click on this link](https://github.com/yitbehisbro/CForecast/blob/main/cforecast_bot.py#L88L98) to refer the code 
+
 - Another core algorithm is listing expected phrases to be used when someone asking for weather information and compare their similarity with the requests from user at predefined min value.
 
 ![code snippet](https://user-images.githubusercontent.com/72982296/230152897-8aec515d-714d-4ee5-b3ec-9140ce0e9381.png)
 
+Or use [this link](https://github.com/yitbehisbro/CForecast/blob/main/cforecast_bot.py#L40L50) to see it.
 
 #### Inspiration and Story behind CForecast
 It is known that ChatGPT is the current hot topic in the world of machine learning. It also inspired me to be inclined toward machine learning, and then I decided to develop a Chatbot-based application that operates like ChatGPT but with a single scope: weather. While thinking of this, the Holberton School, where I am attending a Full-stack Software Engineering class, asked us to do a portfolio project as a partial requirement to accomplish the foundation. Following this, I summited the proposal to the school; and it got approved. It was the birth of CForecast, and I started to work on this project with commitment.
