@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+""" A module used to forecast a n-days weather data """
 import requests
 from geopy.geocoders import Nominatim
 import pandas as pd
