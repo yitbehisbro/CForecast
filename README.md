@@ -1,5 +1,5 @@
 ## Project Name    
-The project's name is <code>CForcast</code> where C stands for Current. Its full name reads "Current and Forecast Weather of The Cities in The Globe". 
+The project's name is <code>CForcast</code> where C stands for Current. Its full name reads "Current and Forecast Weather of The Cities in The Globe". <code>CForecast</code> helps researchers, agricultural experts, merchants, farmers, travelers, and others to know the historical, current, or upcoming n days weather of a given city by using a natural language: English.
 
 ## Introduction
 CForecast is a Chatbot-based current, upcoming, and historical weather forecasting application. It uses the Telegram bot as a chatting interface and the pyTelegramBotAPI library of Python as a back-end of the application. The weather data is accessed from OpenWeather and Open-metro through API and without API (Open-metro is free for non-commercial purposes without API).
