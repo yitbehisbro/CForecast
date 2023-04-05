@@ -12,7 +12,23 @@ The technology I used for this portfolio project are:
 - Web API: I used API to integrate with Telegram bot and to access historical, current or upcoming weather data. For this purpose I used Telegram bot API and OpenWeatherMap API as well as Open-Metro API.
 - Programming language I used for this implementation was a Python.
 
+#### Inspiration and Story behind CForecast
+It is known that ChatGPT is the current hot topic in the world of machine learning. It also inspired me to be inclined toward machine learning, and then I decided to develop a Chatbot-based application that operates like ChatGPT but with a single scope: weather. While thinking of this, the Holberton School, where I am attending a Full-stack Software Engineering class, asked us to do a portfolio project as a partial requirement to accomplish the foundation. Following this, I summited the proposal to the school; and it got approved. It was the birth of CForecast, and I started to work on this project with commitment.
+#### Summary
+![web_architecture (1)](https://user-images.githubusercontent.com/72982296/230151477-bf769058-49d8-481b-b4de-4159fb857711.png)
+For the front end, I used the Telegram bot; and for back-end development, I used Python programming language. At the back end, I used many libraries such as pyTelegramBotAPI, spaCy, geopy, request, pandas, and so on to integrate with the Telegram bot, process the natural language and serve the user with weather data of a given city. And I used OpenWeatherMap API and Open-Metro as weather data sources.
 
+CForecast has three main features.
+- Feature: Current weather forecasting.
+- Non-feature: The user uses the most popular chat application, Telegram, to access the CForecast features
+- Feature: Upcoming n-days forecasting for nearly 16 days and not more than.
+- Feature: Retrieves the archive of historical weather data of a given city to back 1940s.
+#### Technical challenges
+I thought OpenWeather was a free API, so I decided to work with it in my project’s early stages. However, OpenWeather is only free with the API to forecast the current weather conditions. So, I was obligated to search for free API; and I got an API provider named Open-metro that can do the forecasts for the next n consecutive days with its API integration, including historical data.
+
+Then I started to integrate it with the telegram bot through pyTelegramBot API. However, I found it very difficult and time-consuming. I am obligated to read the whole documentation of the Open-Metro. And this let me have a basic understanding of the Open-Metro API, which is free for non-commercial users. Following this, I started to re-organize my implementation and rewrite it to meet the requirements listed in the user story. The task was as challenging as I expected. This was because I was restricted by the deadline and time. So I decided to do the easy thing first; to complete the portfolio project within the given period.
+
+I did it. I have completed the CForecast portfolio project as an application that can function in what was listed in the user story, forecasting upcoming, current, and historical archives of a given city.
 ## Installation
 - Clone the repo: <code>git clone https://github.com/yitbehisbro/CForecast.git</code>
 - Change directory to CForecast: <code>cd CForecast</cd></code>
