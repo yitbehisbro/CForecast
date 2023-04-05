@@ -52,3 +52,13 @@ CForecast is a Chatbot-based current, upcoming, and historical weather forecasti
 
 ![sample3](https://user-images.githubusercontent.com/72982296/230134313-7e3bc2fa-6224-4c57-83d9-66fa33bc491d.png)
 
+## Contributing
+
+<code>CForecast</code> helps researchers, agricultural experts, merchants, farmers, travelers, and others to know the historical, current, or upcoming n days weather of a given city by using a natural language: English.
+
+## Related projects
+
+- I found something named <a href="https://medium.com/weatherbot/telegram-bot-for-weather-report-f688ada85b93" target="_blank"> WeatherBot </a>, from <a href="https://medium.com/" target="_blank">Medium</a> blog, which is a Telegram bot based weather forcasting application. It prompts the user to enter the name of city or location from google map API.
+- Also found another one from GitHub named <a href="https://github.com/mustafababil/Telegram-Weather-Bot" target="_blank">Telegram Weather Bot</a>, which has also nearly the same feature as of the first one.
+
+Both of them has no idea about machine learning and natural language processing which means they are not chatbot based and not use natural language to get the current, upcoming and historical weather data.
