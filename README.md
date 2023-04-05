@@ -44,7 +44,9 @@ CForecast is a Chatbot-based current, upcoming, and historical weather forecasti
 
 ![sample(croped)](https://user-images.githubusercontent.com/72982296/230132817-4f00fa29-7e63-4f8b-beb4-ea741f5fcc3d.png)
 
-- You can ask for consecutive n-days forecast for a particular city by just typing something like <code>
+- You can ask for consecutive n-days forecast for a particular city by just typing something like <code>Tell me the upcoming 6 days weather forecast in Hawassa</code> (The output will look like)
+
+![sample2](https://user-images.githubusercontent.com/72982296/230138978-6131e1f9-cfee-4394-abe4-4df7ce5fbdb0.png)
 
 - You can also ask for historical weather data by typing something like <code>Tell me the historical weather data of London from 14th March 2011 to 17th March 2011</code> (But here the <code>start date</code> and <code>end date</code> as well as the <code>city name</code> mandatory)
 
