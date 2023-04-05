@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+""" A module used to access a current weather data and 
+manages all the weather data requests from the telgram bot.
+It identifies weather the request is command or text based.
+"""
 import requests
 import spacy
 import telebot
