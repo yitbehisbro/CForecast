@@ -34,5 +34,40 @@ class TestNamedEntityFinder(unittest.TestCase):
         with self.assertRaises(TypeError):
             result = named_enity_finder(message)
 
+    @patch('random.randint')
+    def test_gratitude_handler(self, mock_randint):
+        """This test checks if the function correctly identifies a gratitude message
+        and returns an appropriate response. The random.randint function is mocked
+        to return a fixed value to make the test deterministic."""
+        mock_randint.return_value = 0
+        message = "Thank you"
+        result = gratitude_handler(message)
+        self.assertEqual(result, "My pleasure!")
+    
+    @patch('random.randint')
+    def test_gratitude_handler_no_gratitude(self, mock_randint):
+        """This test checks if the function correctly handles a message with no gratitude."""
+        mock_randint.return_value = 0
+        message = "Hello"
+        result = gratitude_handler(message)
+        self.assertIsNone(result)
+
+    @patch('random.randint')
+    def test_gratitude_handler_empty_message(self, mock_randint):
+        """This test checks if the function correctly handles an empty message."""
+        mock_randint.return_value = 0
+        message = ""
+        result = gratitude_handler(message)
+        self.assertIsNone(result)
+
+    @patch('random.randint')
+    def test_gratitude_handler_non_string_message(self, mock_randint):
+        """This test checks if the function correctly handles a non-string message by raising a TypeError."""
+        mock_randint.return_value = 0
+        message = 12345
+        with self.assertRaises(TypeError):
+            result = gratitude_handler(message)
+
+
 if __name__ == '__main__':
     unittest.main()
