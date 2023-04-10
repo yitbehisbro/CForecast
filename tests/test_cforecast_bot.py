@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """Test module for cforecast_bot.py """
 import unittest
+from unittest.mock import patch
+
 
 class TestNamedEntityFinder(unittest.TestCase):
     def test_named_entity_finder(self):
